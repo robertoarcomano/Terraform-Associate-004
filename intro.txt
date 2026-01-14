@@ -1,0 +1,53 @@
+Tradictional Infra: 
+    connect to console and manage it
+    manually
+
+IaC:
+    API driven
+    higher elasticity of resources
+    higher scaler
+    cyclic: scale down at night, scale up during the day
+    put it into revision
+
+Terraform:
+    IaC
+    for on-premise and cloud
+    human readable format
+    versionable
+    consistent workflow to provision and manage infra in its lifecycle
+    API based using a Terraform Provider -> Terraform Registry
+
+Stages:
+    Write: Define resources
+    Plan: Create the execution plan -> infra to be created / updated / destroyed based on currect infra and config
+        : Desired + State = Plan
+    Apply: Approval granted, execute the plan, in the correct order respecting dependencies
+
+Mutable Infrastructure Approach:
+    -) No upgrades
+    -) No states in between
+    -) Just create a brand new resource(s) and point to it
+    -) Decommission old resource can be done afterwards
+
+landing zone setup -> Initial Deploy
+
+Policy: 
+    -) Costs
+    -) Sec
+    -) Compliance
+    -) Ops
+
+Modules
+
+Registry (how to use module)
+    -) MySQL Pattern
+
+MySQL -> Lifecycle
+
+Module Lifecycle management
+
+PinOps (control who changes Terraform configuration)
+
+Packer: Terraform predefined configuration
+
+
