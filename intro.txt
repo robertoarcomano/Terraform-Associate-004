@@ -50,4 +50,5 @@ PinOps (control who changes Terraform configuration)
 
 Packer: Terraform predefined configuration
 
+Errors with state: terraform import resource...
 

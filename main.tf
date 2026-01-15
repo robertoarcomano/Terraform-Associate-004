@@ -24,7 +24,7 @@ resource "aws_instance" "free_tier" {
   subnet_id     = aws_subnet.s3_net.id
   key_name      = aws_key_pair.ssh.key_name
 
-  associate_public_ip_address = false
+  associate_public_ip_address = true
 }
 
 resource "aws_key_pair" "ssh" {
@@ -34,4 +34,26 @@ resource "aws_key_pair" "ssh" {
 
 resource "aws_ec2_instance_connect_endpoint" "endpoint" {
   subnet_id = aws_subnet.s3_net.id
+}
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.default.id
+
+  tags = {
+    Name = "igw"
+  }
+}
+
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.default.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+}
+
+resource "aws_route_table_association" "s3_net_assoc" {
+  subnet_id      = aws_subnet.s3_net.id
+  route_table_id = aws_route_table.public.id
 }
